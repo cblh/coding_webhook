@@ -1,0 +1,36 @@
+{
+  "name": "coding-webhoook",
+  "private": true,
+  "version": "0.0.1",
+  "description": "coding net webhoook to auto deloy",
+  "keywords": [
+    "koa"
+  ],
+  "author": "Burlin Chen <burlinchen@tencent.com>",
+  "main": "app.js",
+  "private": true,
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --recursive --harmony",
+    "start": "NODE_ENV=test pm2 startOrRestart pm2.json",
+    "dev": "set NODE_ENV=development&& node-dev --harmony --debug=5859 app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "devDependencies": {
+    "node-dev": ">=2.6.2",
+    "should": ">=7.0.3",
+    "mocha": ">=2.2.5"
+  },
+  "dependencies": {
+    "coding-webhook-handler": "~0.6.1"
+  },
+  "apidoc": { }
+}
