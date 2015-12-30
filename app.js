@@ -28,20 +28,14 @@ handler.on('*', function(event) {
 handler.on('push', function(event) {
     console.log(event)
     if(event&&event.payload&&event.payload.ref === 'master'){
-        process.exec('git pull', {'cwd':'/home/coding/workspace'},
+        process.exec('git pull', {'cwd':config.projectPath},
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
                 console.log('stderr========================\n' + stderr);
                 if (error !== null) {
-                    res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
                 } else {
                     process.exec(config.afterPullCommand, {'cwd':config.projectPath},
                         function(error, stdout, stderr){
-                            if (error !== null) {
-                                res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
-                            } else {
-                                res.send('<pre>done!!!\n' + stdout + '</pre>');
-                            }
                         });
                 }
             });
