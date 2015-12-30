@@ -34,12 +34,13 @@ handler.on('push', function(event) {
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
                 console.log('stderr========================\n' + stderr);
-                if (error !== null) {
-                } else {
-                    process.exec(config.afterPullCommand, {'cwd':cwd},
-                        function(error, stdout, stderr){
-                        });
-                }
+                console.log(error);
+                process.exec(config.afterPullCommand, {'cwd':cwd},
+                    function(error, stdout, stderr){
+                    });
+                //if (error !== null) {
+                //} else {
+                //}
             });
     }
 })
