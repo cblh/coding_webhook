@@ -22,16 +22,11 @@ handler.on('error', function(err) {
 })
 
 handler.on('*', function(event) {
-    console.log(event.event)
-    console.log(event.payload)
-    console.log(event.protocol)
-    console.log(event.host)
-    console.log(event.url)
 })
 
 handler.on('push', function(event) {
     console.log(event)
-    if(event.ref === 'master'){
+    if(event&&event.payload&&event.payload.ref === 'master'){
         process.exec('git pull', {'cwd':'/home/coding/workspace'},
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
