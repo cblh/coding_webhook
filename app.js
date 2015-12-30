@@ -7,7 +7,7 @@ var handler = createHandler({
 })
 
 var config = {
-    projectPath :'/data/sites/install/coding_webhook',
+    projectPathRoot :'/data/sites/install/',
     afterPullCommand:'npm run start'
 }
 
@@ -28,13 +28,14 @@ handler.on('*', function(event) {
 handler.on('push', function(event) {
     console.log(event)
     if(event&&event.payload&&event.payload.ref === 'master'){
-        process.exec('git pull origin master', {'cwd':config.projectPath},
+        var cwd = path.join(config.projectPathRoot,event.payload.repository.name)
+        process.exec('git pull origin master', {'cwd':cwd},
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
                 console.log('stderr========================\n' + stderr);
                 if (error !== null) {
                 } else {
-                    process.exec(config.afterPullCommand, {'cwd':config.projectPath},
+                    process.exec(config.afterPullCommand, {'cwd':cwd},
                         function(error, stdout, stderr){
                         });
                 }
