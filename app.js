@@ -28,7 +28,7 @@ handler.on('*', function(event) {
 handler.on('push', function(event) {
     console.log(event)
     if(event&&event.payload&&event.payload.ref === 'master'){
-        process.exec('git pull', {'cwd':config.projectPath},
+        process.exec('git pull origin master', {'cwd':config.projectPath},
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
                 console.log('stderr========================\n' + stderr);
