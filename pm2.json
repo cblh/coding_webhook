@@ -1,0 +1,7 @@
+{
+    "apps": [{
+        "name" : "coding_webhook",
+        "script" : "app.js",
+        "node_args" : "--harmony"
+    }]
+}

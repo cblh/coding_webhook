@@ -9,7 +9,6 @@ var handler = createHandler({
 
 var config = {
     projectPathRoot :'/data/sites/install/',
-    afterPullCommand:'npm run start'
 }
 
 http.createServer(function(req, res) {
@@ -28,21 +27,16 @@ handler.on('*', function(event) {
 
 handler.on('push', function(event) {
     console.log(event)
-    if(event&&event.payload&&event.payload.ref === 'master'){
         var cwd = path.join(config.projectPathRoot,event.payload.repository.name)
-        process.exec('git pull origin master', {'cwd':cwd},
+        process.exec('sh p', {'cwd':cwd},
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
                 console.log('stderr========================\n' + stderr);
                 console.log(error);
-                process.exec(config.afterPullCommand, {'cwd':cwd},
-                    function(error, stdout, stderr){
-                    });
                 //if (error !== null) {
                 //} else {
                 //}
             });
-    }
 })
 
 handler.on('star', function(event) {
